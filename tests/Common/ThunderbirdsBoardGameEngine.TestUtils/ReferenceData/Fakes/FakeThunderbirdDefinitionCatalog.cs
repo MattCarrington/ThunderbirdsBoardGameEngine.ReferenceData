@@ -5,7 +5,7 @@ using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
 
-namespace ThunderbirdsBoardGameEngine.Rules.ComponentTests.Fakes
+namespace ThunderbirdsBoardGameEngine.TestUtils.ReferenceData.Fakes
 {
     public class FakeThunderbirdDefinitionCatalog : IThunderbirdDefinitionCatalog
     {
@@ -19,6 +19,11 @@ namespace ThunderbirdsBoardGameEngine.Rules.ComponentTests.Fakes
         public ImmutableArray<ReferenceThunderbirdDefinition> GetAll()
         {
             return _thunderbirds.Values.ToImmutableArray();
+        }
+
+        public ReferenceThunderbirdDefinition GetByCode(ThunderbirdCode code)
+        {
+            return _thunderbirds[code];
         }
 
         public bool TryGetByCode(ThunderbirdCode code, [NotNullWhen(true)] out ReferenceThunderbirdDefinition? definition)
