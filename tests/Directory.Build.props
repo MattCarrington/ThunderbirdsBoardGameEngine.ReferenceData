@@ -1,0 +1,7 @@
+<Project>
+  <Import Project="../Directory.Build.props" />
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Infrastructure/ClassData/*.cs"
+             Link="Infrastructure/ClassData/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,42 @@
+name: Reference Data CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - name: Restore
+        run: dotnet restore ThunderbirdsBoardGameEngine.ReferenceData.sln
+      - name: Build
+        run: dotnet build ThunderbirdsBoardGameEngine.ReferenceData.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test ThunderbirdsBoardGameEngine.ReferenceData.sln --configuration Release --no-build --no-restore
+      - name: Verify formatting
+        run: dotnet format ThunderbirdsBoardGameEngine.ReferenceData.sln --verify-no-changes --no-restore
+      - name: Pack extraction candidates
+        if: runner.os == 'Linux'
+        run: dotnet pack ThunderbirdsBoardGameEngine.ReferenceData.sln --configuration Release --no-build --no-restore -p:Version=0.0.0-extraction.${{ github.run_number }} -p:PackageVersion=0.0.0-extraction.${{ github.run_number }} --output artifacts/packages
+      - uses: actions/upload-artifact@v7
+        if: runner.os == 'Linux'
+        with:
+          name: reference-data-candidate-packages
+          path: artifacts/packages/*.nupkg
+          if-no-files-found: error

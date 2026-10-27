@@ -373,3 +373,6 @@ FodyWeavers.xsd
 /TemplateEngineHost/vs
 
 /Docker/.env
+
+# Local candidate packages
+artifacts/

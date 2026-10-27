@@ -1,6 +1,6 @@
 # Reference Data Evolution Plan
 
-- Status: Draft roadmap; construction boundary implemented, remaining delivery planned
+- Status: Construction boundary and local standalone extraction verified; publishing and application migration remain planned
 - Date: 2026-10-22
 - Policy updated: 2026-10-27
 
@@ -20,17 +20,17 @@ then publish the same verified artifact through both paths while migrating.
 accepted snapshot architecture. This plan builds on that model; future Blob
 delivery decisions must explicitly revise its embedded-delivery assumptions.
 
-The [Reference Data overview](../../src/ReferenceData/Readme.md) describes the implemented subsystem. The [compiler guide](../../tools/ReferenceData/README.md) owns authoring, relationship validation, and the current manual snapshot-update procedure.
+The [Reference Data overview](../../src/Readme.md) describes the implemented subsystem. The [compiler guide](../../tools/README.md) owns authoring, relationship validation, and the current manual snapshot-update procedure.
 
-The compiler generates a local JSON file. Runtime embeds a separately copied snapshot and requires an exact schema-version match. Core and Runtime are published packages, but production projects can integrate through project references. Package selection and publishing share the repository's [release infrastructure](../PackageReleases.md).
+The compiler generates a local JSON file. Runtime embeds a separately copied snapshot and requires an exact schema-version match. Core and Runtime have existing published packages. The original application still integrates through its existing project references. This standalone repository has independent build/test CI and candidate packaging, but no feed or Blob publishing workflow yet. The application repository's historical package selection and publishing use its [release infrastructure](https://github.com/MattCarrington/ThunderbirdsBoardGameEngine/blob/99318f91dd6885e88b693a5be179b40b828133ac/docs/PackageReleases.md).
 
 Definition construction is now restricted under ADR 0007. Compilation, snapshot
 copying, and version updates still require manual coordination. Shared builds
 can hide the compatibility effects of changing multiple projects together.
 
 Application deployment verification remains a separate responsibility; see the
-[smoke-test guide](../../tests/SmokeTests/Readme.md) and
-[deployment ADR](decisions/0006-separate-dev-validation-and-deployment.md).
+[smoke-test guide](https://github.com/MattCarrington/ThunderbirdsBoardGameEngine/blob/99318f91dd6885e88b693a5be179b40b828133ac/tests/SmokeTests/Readme.md) and
+[deployment ADR](https://github.com/MattCarrington/ThunderbirdsBoardGameEngine/blob/99318f91dd6885e88b693a5be179b40b828133ac/docs/architecture/decisions/0006-separate-dev-validation-and-deployment.md).
 Reference Data CI must have explicit production and publication gates rather
 than being coupled to application deployment smoke tests.
 
@@ -117,3 +117,5 @@ authoring policies in its guide. Keep general package publication mechanics and
 deployed smoke-test operation in their existing guides. Link these documents
 rather than duplicating them. Consolidate or remove obsolete material as each
 slice lands and update inbound links.
+
+The extraction boundary, TestUtils ownership, and rollout limits are recorded in [ADR 0009](decisions/0009-independent-reference-data-repository.md).

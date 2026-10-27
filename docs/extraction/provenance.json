@@ -1,0 +1,11 @@
+{
+  "sourceRepository": "https://github.com/MattCarrington/ThunderbirdsBoardGameEngine",
+  "sourceBranch": "main",
+  "sourceCommit": "99318f91dd6885e88b693a5be179b40b828133ac",
+  "filteredCommit": "39ff34e0e5c03c22c33bf8c4ff1e3014154d3439",
+  "filterRepoVersion": "a40bce548d2c",
+  "retainedFileCount": 210,
+  "retainedCommitCount": "67",
+  "verified": "Every retained HEAD entry has the same blob and file mode as the source",
+  "date": "2026-10-27"
+}

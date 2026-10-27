@@ -1,0 +1,21 @@
+using Xunit;
+
+namespace ThunderbirdsBoardGameEngine.ReferenceData.TestInfrastructure.ClassData
+{
+    /// <summary>
+    /// Provides null and whitespace-only strings for validating guard clauses and parsing logic.
+    /// </summary>
+    public sealed class NullOrWhitespaceStringData : TheoryData<string?>
+    {
+        /// <inheritdoc />
+        public NullOrWhitespaceStringData()
+        {
+            Add((string?)null);
+
+            foreach (var item in new WhiteSpaceStringData())
+            {
+                Add(item);
+            }
+        }
+    }
+}

@@ -211,7 +211,7 @@ one. The game-pinning story must resolve this during implementation design.
 ## Related documentation
 
 - [Foundational snapshot decision](0000-snapshot-based-reference-data.md)
-- [Reference Data overview](../../../src/ReferenceData/Readme.md)
-- [Compiler operation](../../../tools/ReferenceData/README.md)
-- [Package releases](../../PackageReleases.md)
+- [Reference Data overview](../../../src/Readme.md)
+- [Compiler operation](../../../tools/README.md)
+- [Package releases](https://github.com/MattCarrington/ThunderbirdsBoardGameEngine/blob/99318f91dd6885e88b693a5be179b40b828133ac/docs/PackageReleases.md)
 - [Evolution plan and implementation follow-ups](../reference-data-evolution.md)
