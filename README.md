@@ -80,3 +80,10 @@ tools/
 ```
 
 For example, `src/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.Runtime.csproj`.
+
+## Pre-commit checks
+
+Run `./scripts/install-hooks.ps1` once after cloning to install the local Git hook.
+It verifies formatting, builds Release, and runs the unit-test projects before
+allowing a commit. Formatting problems block the commit instead of silently
+rewriting or staging files. See [hook setup and operation](scripts/README.md).
