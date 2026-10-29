@@ -27,10 +27,6 @@ jobs:
         with:
           global-json-file: global.json
 
-      - uses: ./.github/actions/authenticate-github-packages
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Restore & Build
         run: |
           dotnet restore "${{ inputs.solution_file }}"

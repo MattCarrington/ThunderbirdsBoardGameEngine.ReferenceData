@@ -22,10 +22,6 @@ jobs:
         with:
           global-json-file: global.json
 
-      - uses: ./.github/actions/authenticate-github-packages
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       # Optional but nice: ensure formatting is clean
       - name: Check code format
         run: |
