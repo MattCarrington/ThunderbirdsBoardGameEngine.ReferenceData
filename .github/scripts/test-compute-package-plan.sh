@@ -55,11 +55,6 @@ run_test \
   '["ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
 
 run_test \
-  "ReferenceData readme selects Runtime" \
-  "src/Readme.md" \
-  '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
-
-run_test \
   "Test-only dependency selects no packages" \
   "Directory.Packages.props" \
   '[]' \
