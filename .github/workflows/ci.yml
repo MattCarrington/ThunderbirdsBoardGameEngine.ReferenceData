@@ -1,42 +1,68 @@
-name: Reference Data CI
+name: CI
 
 on:
-  push:
-    branches: [main]
   pull_request:
-  workflow_dispatch:
+  push:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
-  contents: read
+  contents: write
+  actions: read
+  packages: write
 
+env:
+  SOLUTION_FILE: &solution ThunderbirdsBoardGameEngine.ReferenceData.sln
+    
 jobs:
-  verify:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    steps:
-      - uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-dotnet@v6
-        with:
-          global-json-file: global.json
-      - name: Restore
-        run: dotnet restore ThunderbirdsBoardGameEngine.ReferenceData.sln
-      - name: Build
-        run: dotnet build ThunderbirdsBoardGameEngine.ReferenceData.sln --configuration Release --no-restore
-      - name: Test
-        run: dotnet test ThunderbirdsBoardGameEngine.ReferenceData.sln --configuration Release --no-build --no-restore
-      - name: Verify formatting
-        run: dotnet format ThunderbirdsBoardGameEngine.ReferenceData.sln --verify-no-changes --no-restore
-      - name: Pack extraction candidates
-        if: runner.os == 'Linux'
-        run: dotnet pack ThunderbirdsBoardGameEngine.ReferenceData.sln --configuration Release --no-build --no-restore -p:Version=0.0.0-extraction.${{ github.run_number }} -p:PackageVersion=0.0.0-extraction.${{ github.run_number }} --output artifacts/packages
-      - uses: actions/upload-artifact@v7
-        if: runner.os == 'Linux'
-        with:
-          name: reference-data-candidate-packages
-          path: artifacts/packages/*.nupkg
-          if-no-files-found: error
+  ci-script-tests:
+    uses: ./.github/workflows/tests-ci-scripts.yml
+
+  static-analysis:
+    uses: ./.github/workflows/static-analysis.yml
+    with:
+      solution_file: *solution
+
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      solution_file: *solution
+    needs:
+      - static-analysis
+
+  tests:
+    uses: ./.github/workflows/tests-dotnet.yml
+    with:
+      solution_file: *solution
+      run_component: true
+    needs:
+      - build
+
+  compute-version:
+    if: github.event_name == 'push'
+    uses: ./.github/workflows/version.yml
+    with:
+      pr_title: ${{ github.event.pull_request.title || github.event.head_commit.message }}
+    needs:
+      - tests
+      - ci-script-tests
+
+  tag-repo:
+    if: github.ref == 'refs/heads/main' && needs.compute-version.outputs.release_type != 'none'
+    uses: ./.github/workflows/tag-repo.yml
+    with:
+      version: ${{ needs.compute-version.outputs.version }}
+      tag_prefix: "server/v"
+    needs:
+      - compute-version
+
+  packages:
+    if: github.event_name == 'push' && needs.compute-version.outputs.release_type != 'none'
+    uses: ./.github/workflows/package-release.yml
+    with:
+      before_sha: ${{ github.event.before }}
+      default_branch: ${{ github.event.repository.default_branch }}
+    secrets: inherit
+    needs:
+      - compute-version

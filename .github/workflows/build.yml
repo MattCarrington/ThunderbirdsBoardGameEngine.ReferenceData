@@ -1,0 +1,32 @@
+name: Build (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      solution_file:
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Build .NET Solution
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - uses: ./.github/actions/authenticate-github-packages
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Restore & Build
+        run: |
+          dotnet restore "${{ inputs.solution_file }}"
+          dotnet build "${{ inputs.solution_file }}" --configuration Release --no-restore
