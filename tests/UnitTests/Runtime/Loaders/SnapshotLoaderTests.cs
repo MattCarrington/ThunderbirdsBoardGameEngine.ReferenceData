@@ -3,9 +3,9 @@ using NSubstitute;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Loaders;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
 using ThunderbirdsBoardGameEngine.ReferenceData.TestInfrastructure.ClassData;
 using Xunit;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Loaders
 {

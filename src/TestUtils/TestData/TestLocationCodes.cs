@@ -1,6 +1,6 @@
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 
-namespace ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.TestData
+namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.TestData
 {
     public static class TestLocationCodes
     {

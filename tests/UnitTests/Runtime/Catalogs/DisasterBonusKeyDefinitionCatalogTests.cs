@@ -1,6 +1,6 @@
 ﻿using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Catalogs;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 using Xunit;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Catalogs

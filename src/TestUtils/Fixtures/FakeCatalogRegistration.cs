@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.TestData;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.TestData;
 
-namespace ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Fixtures
+namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fixtures
 {
     public static class FakeCatalogRegistration
     {

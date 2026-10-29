@@ -1,8 +1,8 @@
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Enums;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Fakes;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes;
 
-namespace ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.TestData
+namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.TestData
 {
     public class LocationsTestData
     {

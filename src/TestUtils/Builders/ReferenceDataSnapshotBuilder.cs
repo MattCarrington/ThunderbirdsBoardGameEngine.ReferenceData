@@ -3,7 +3,7 @@ using ThunderbirdsBoardGameEngine.ReferenceData.Core.Enums;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 
-namespace ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
+namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 
 /// <summary>
 /// Fluent builder for creating test snapshots with minimal boilerplate.

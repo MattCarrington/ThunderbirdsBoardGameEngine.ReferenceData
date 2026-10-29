@@ -2,7 +2,7 @@ using System.Collections.Immutable;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
 
-namespace ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Fakes
+namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes
 {
     public class FakeMapEdgeDefinitionCatalog : IMapEdgeDefinitionCatalog
     {
