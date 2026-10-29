@@ -16,6 +16,9 @@ jobs:
   tests:
     name: Run Unit And Component Tests
     runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
