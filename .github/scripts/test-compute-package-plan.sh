@@ -40,14 +40,19 @@ run_test() {
 }
 
 run_test \
-  "ReferenceData.Core selects Runtime" \
+  "ReferenceData.Core selects Runtime and Testing" \
   "src/Core/ThunderbirdsBoardGameEngine.ReferenceData.Core/Model.cs" \
-  '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime", "ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
+  '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime","ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
 
 run_test \
-  "ReferenceData.Runtime selects only itself" \
+  "ReferenceData.Runtime selects Testing" \
   "src/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.Runtime/Runtime.cs" \
-  '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
+  '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime","ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
+
+run_test \
+  "ReferenceData.Testing selects no additional packages" \
+  "src/TestUtils/ThunderbirdsBoardGameEngine.ReferenceData.Testing/TestUtils.cs" \
+  '["ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
 
 run_test \
   "ReferenceData readme selects Runtime" \
