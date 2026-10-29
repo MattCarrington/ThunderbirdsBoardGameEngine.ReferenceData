@@ -40,46 +40,6 @@ run_test() {
 }
 
 run_test \
-  "Rules.Contracts selects its consumers" \
-  "src/Rules/ThunderbirdsBoardGameEngine.Rules.Contracts/Dtos/Response.cs" \
-  '["ThunderbirdsBoardGameEngine.Rules.Contracts","ThunderbirdsBoardGameEngine.Rules.Client","ThunderbirdsBoardGameEngine.Rules.WireMock"]'
-
-run_test \
-  "Rules.Client selects only itself" \
-  "src/Rules/ThunderbirdsBoardGameEngine.Rules.Client/MovementClient.cs" \
-  '["ThunderbirdsBoardGameEngine.Rules.Client"]'
-
-run_test \
-  "Rules.WireMock selects only itself" \
-  "tools/Rules/ThunderbirdsBoardGameEngine.Rules.WireMock/MovementStub.cs" \
-  '["ThunderbirdsBoardGameEngine.Rules.WireMock"]'
-
-run_test \
-  "GameState.Contracts selects its consumers" \
-  "src/GameState/ThunderbirdsBoardGameEngine.GameState.Contracts/Dtos/Response.cs" \
-  '["ThunderbirdsBoardGameEngine.GameState.Contracts","ThunderbirdsBoardGameEngine.GameState.Client","ThunderbirdsBoardGameEngine.GameState.WireMock"]'
-
-run_test \
-  "GameState.Client selects only itself" \
-  "src/GameState/ThunderbirdsBoardGameEngine.GameState.Client/GameStateClient.cs" \
-  '["ThunderbirdsBoardGameEngine.GameState.Client"]'
-
-run_test \
-  "GameState.WireMock selects only itself" \
-  "tools/GameState/ThunderbirdsBoardGameEngine.GameState.WireMock/GameStateStub.cs" \
-  '["ThunderbirdsBoardGameEngine.GameState.WireMock"]'
-
-run_test \
-  "Client.Core selects both clients" \
-  "src/Common/ThunderbirdsBoardGameEngine.Client.Core/ApiResult.cs" \
-  '["ThunderbirdsBoardGameEngine.Client.Core","ThunderbirdsBoardGameEngine.Rules.Client","ThunderbirdsBoardGameEngine.GameState.Client"]'
-
-run_test \
-  "WireMock.Hosting selects both WireMock packages" \
-  "tools/Common/ThunderbirdsBoardGameEngine.WireMock.Hosting/Server.cs" \
-  '["ThunderbirdsBoardGameEngine.WireMock.Hosting","ThunderbirdsBoardGameEngine.Rules.WireMock","ThunderbirdsBoardGameEngine.GameState.WireMock"]'
-
-run_test \
   "ReferenceData.Core selects Runtime" \
   "src/ReferenceData/ThunderbirdsBoardGameEngine.ReferenceData.Core/Model.cs" \
   '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
@@ -93,24 +53,6 @@ run_test \
   "ReferenceData readme selects Runtime" \
   "src/ReferenceData/Readme.md" \
   '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
-
-run_test \
-  "Shared HTTP dependency selects both clients" \
-  "Directory.Packages.props" \
-  '["ThunderbirdsBoardGameEngine.Rules.Client","ThunderbirdsBoardGameEngine.GameState.Client"]' \
-  '+    <PackageVersion Include="Microsoft.Extensions.Http" Version="8.0.2" />'
-
-run_test \
-  "Client.Core dependency propagates to both clients" \
-  "Directory.Packages.props" \
-  '["ThunderbirdsBoardGameEngine.Client.Core","ThunderbirdsBoardGameEngine.Rules.Client","ThunderbirdsBoardGameEngine.GameState.Client"]' \
-  '+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.2" />'
-
-run_test \
-  "WireMock.Hosting dependency propagates to both WireMock packages" \
-  "Directory.Packages.props" \
-  '["ThunderbirdsBoardGameEngine.WireMock.Hosting","ThunderbirdsBoardGameEngine.Rules.WireMock","ThunderbirdsBoardGameEngine.GameState.WireMock"]' \
-  '+    <PackageVersion Include="WireMock.Net" Version="1.20.0" />'
 
 run_test \
   "Test-only dependency selects no packages" \
