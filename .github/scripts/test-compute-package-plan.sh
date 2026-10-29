@@ -41,17 +41,17 @@ run_test() {
 
 run_test \
   "ReferenceData.Core selects Runtime" \
-  "src/ReferenceData/ThunderbirdsBoardGameEngine.ReferenceData.Core/Model.cs" \
-  '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
+  "src/Core/ThunderbirdsBoardGameEngine.ReferenceData.Core/Model.cs" \
+  '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime", "ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
 
 run_test \
   "ReferenceData.Runtime selects only itself" \
-  "src/ReferenceData/ThunderbirdsBoardGameEngine.ReferenceData.Runtime/Runtime.cs" \
+  "src/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.Runtime/Runtime.cs" \
   '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
 
 run_test \
   "ReferenceData readme selects Runtime" \
-  "src/ReferenceData/Readme.md" \
+  "src/Readme.md" \
   '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]'
 
 run_test \
