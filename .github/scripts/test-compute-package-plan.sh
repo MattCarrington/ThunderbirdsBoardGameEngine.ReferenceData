@@ -65,4 +65,14 @@ run_test \
   "docs/package-lifecycle.md" \
   '[]'
 
+run_test \
+  "No changes select no packages" \
+  "" \
+  '[]'
+
+run_test \
+  "Changes to directory.build.props selects all packages" \
+  "Directory.Build.props" \
+  '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime","ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
+
 echo "All $PASSED compute-package-plan tests passed."
