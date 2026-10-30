@@ -15,8 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../../../tools/Compiler/ThunderbirdsBoardGameEngine.ReferenceData.Compiler.csproj" />
-    <ProjectReference Include="../../../src/TestUtils/ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.csproj" />
-    <ProjectReference Include="..\..\..\src\TestUtils\ThunderbirdsBoardGameEngine.ReferenceData.Testing.csproj" />
+    <ProjectReference Include="../../../src/TestUtils/ThunderbirdsBoardGameEngine.ReferenceData.Testing.csproj" />
   </ItemGroup>
 
 </Project>
