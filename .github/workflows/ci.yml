@@ -3,9 +3,10 @@ name: CI
 on:
   pull_request:
   push:
+    branches: ['**']
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: write
@@ -39,30 +40,13 @@ jobs:
     needs:
       - build
 
-  compute-version:
-    if: github.event_name == 'push'
-    uses: ./.github/workflows/version.yml
-    with:
-      pr_title: ${{ github.event.pull_request.title || github.event.head_commit.message }}
-    needs:
-      - tests
-      - ci-script-tests
-
-  tag-repo:
-    if: github.ref == 'refs/heads/main' && needs.compute-version.outputs.release_type != 'none'
-    uses: ./.github/workflows/tag-repo.yml
-    with:
-      version: ${{ needs.compute-version.outputs.version }}
-      tag_prefix: "server/v"
-    needs:
-      - compute-version
-
   packages:
-    if: github.event_name == 'push' && needs.compute-version.outputs.release_type != 'none'
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
     uses: ./.github/workflows/package-release.yml
     with:
       before_sha: ${{ github.event.before }}
       default_branch: ${{ github.event.repository.default_branch }}
     secrets: inherit
     needs:
-      - compute-version
+      - tests
+      - ci-script-tests

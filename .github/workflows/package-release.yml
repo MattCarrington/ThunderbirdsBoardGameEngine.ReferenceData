@@ -18,7 +18,7 @@ jobs:
   packages:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       packages: write
 
     steps:
@@ -104,3 +104,9 @@ jobs:
           PACKAGE_PLAN: ${{ steps.prepared-plan.outputs.plan }}
           GITHUB_TOKEN: ${{ github.token }}
         run: bash ./.github/scripts/validate-package-plan.sh
+
+      - name: Tag verified stable packages
+        if: steps.package-plan.outputs.has_packages == 'true' && github.ref == format('refs/heads/{0}', inputs.default_branch)
+        env:
+          PACKAGE_PLAN: ${{ steps.prepared-plan.outputs.plan }}
+        run: python3 ./.github/scripts/tag-package-plan.py

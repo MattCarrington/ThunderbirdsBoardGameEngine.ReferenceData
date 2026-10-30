@@ -3,9 +3,12 @@
     "name": "ReferenceData.Core",
     "package_id": "ThunderbirdsBoardGameEngine.ReferenceData.Core",
     "project_path": "src/Core/ThunderbirdsBoardGameEngine.ReferenceData.Core.csproj",
-    "source_paths": ["src/Core"],
+    "source_paths": [
+      "src/Core"
+    ],
     "central_packages": [],
-    "dependencies": []
+    "dependencies": [],
+    "tag_prefix": "core/v"
   },
   {
     "name": "ReferenceData.Runtime",
@@ -20,7 +23,10 @@
       "Microsoft.Extensions.Logging",
       "Microsoft.Extensions.Logging.Abstractions"
     ],
-    "dependencies": ["ThunderbirdsBoardGameEngine.ReferenceData.Core"]
+    "dependencies": [
+      "ThunderbirdsBoardGameEngine.ReferenceData.Core"
+    ],
+    "tag_prefix": "runtime/v"
   },
   {
     "name": "ReferenceData.Testing",
@@ -33,6 +39,10 @@
     "central_packages": [
       "Microsoft.Extensions.DependencyInjection.Abstractions"
     ],
-    "dependencies": ["ThunderbirdsBoardGameEngine.ReferenceData.Core", "ThunderbirdsBoardGameEngine.ReferenceData.Runtime"]
+    "dependencies": [
+      "ThunderbirdsBoardGameEngine.ReferenceData.Core",
+      "ThunderbirdsBoardGameEngine.ReferenceData.Runtime"
+    ],
+    "tag_prefix": "testing/v"
   }
 ]
