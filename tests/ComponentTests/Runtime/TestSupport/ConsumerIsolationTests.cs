@@ -2,9 +2,9 @@ using Microsoft.Extensions.DependencyInjection;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Enums;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Fakes;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Fixtures;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fixtures;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes;
 using Xunit;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.ComponentTests.TestSupport;

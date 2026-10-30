@@ -1,0 +1,48 @@
+[
+  {
+    "name": "ReferenceData.Core",
+    "package_id": "ThunderbirdsBoardGameEngine.ReferenceData.Core",
+    "project_path": "src/Core/ThunderbirdsBoardGameEngine.ReferenceData.Core.csproj",
+    "source_paths": [
+      "src/Core",
+      "Directory.Build.props"
+    ],
+    "central_packages": [],
+    "dependencies": [],
+    "tag_prefix": "core/v"
+  },
+  {
+    "name": "ReferenceData.Runtime",
+    "package_id": "ThunderbirdsBoardGameEngine.ReferenceData.Runtime",
+    "project_path": "src/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.Runtime.csproj",
+    "source_paths": [
+      "src/Runtime",
+      "src/Readme.md"
+    ],
+    "central_packages": [
+      "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "Microsoft.Extensions.Logging",
+      "Microsoft.Extensions.Logging.Abstractions"
+    ],
+    "dependencies": [
+      "ThunderbirdsBoardGameEngine.ReferenceData.Core"
+    ],
+    "tag_prefix": "runtime/v"
+  },
+  {
+    "name": "ReferenceData.Testing",
+    "package_id": "ThunderbirdsBoardGameEngine.ReferenceData.Testing",
+    "project_path": "src/TestUtils/ThunderbirdsBoardGameEngine.ReferenceData.Testing.csproj",
+    "source_paths": [
+      "src/TestUtils"
+    ],
+    "central_packages": [
+      "Microsoft.Extensions.DependencyInjection.Abstractions"
+    ],
+    "dependencies": [
+      "ThunderbirdsBoardGameEngine.ReferenceData.Core",
+      "ThunderbirdsBoardGameEngine.ReferenceData.Runtime"
+    ],
+    "tag_prefix": "testing/v"
+  }
+]

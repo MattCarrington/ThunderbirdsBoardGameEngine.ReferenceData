@@ -1,11 +1,11 @@
-﻿using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
-using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Compilation;
+﻿using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Compilation;
 using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Resolvers;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Enums;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.TestInfrastructure.ClassData;
 using Xunit;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.UnitTests.Resolvers
 {

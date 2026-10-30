@@ -3,7 +3,7 @@ using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Models;
 
-namespace ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
+namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 
 /// <summary>
 /// Creates reference definitions for automated tests. This assembly is test tooling,

@@ -1,7 +1,7 @@
 using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Compilation;
 using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Validators;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Enums;
-using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 using Xunit;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.UnitTests.Validators

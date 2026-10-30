@@ -2,4 +2,4 @@
 
 [assembly: InternalsVisibleTo("ThunderbirdsBoardGameEngine.ReferenceData.Core.UnitTests")]
 [assembly: InternalsVisibleTo("ThunderbirdsBoardGameEngine.ReferenceData.Compiler")]
-[assembly: InternalsVisibleTo("ThunderbirdsBoardGameEngine.ReferenceData.TestUtils")]
+[assembly: InternalsVisibleTo("ThunderbirdsBoardGameEngine.ReferenceData.Testing")]

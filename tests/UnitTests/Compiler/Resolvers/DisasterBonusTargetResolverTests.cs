@@ -1,11 +1,10 @@
-﻿using ThunderbirdsBoardGameEngine.ReferenceData.TestUtils.Builders;
-using DocumentFormat.OpenXml.ExtendedProperties;
-using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Compilation;
+﻿using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Compilation;
 using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Resolvers;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Enums;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.TestInfrastructure.ClassData;
+using ThunderbirdsBoardGameEngine.ReferenceData.Testing.Builders;
 using Xunit;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.UnitTests.Resolvers
