@@ -24,5 +24,12 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces
         /// Thrown when no character with the specified code exists.
         /// </exception>
         ReferenceCharacterDefinition GetByCode(CharacterCode code);
+
+        /// <summary>
+        /// Determines whether the specified character code exists.
+        /// </summary>
+        /// <param name="code">The character code to locate.</param>
+        /// <returns><see langword="true"/> if the character code exists; otherwise, <see langword="false"/>.</returns>
+        bool Exists(CharacterCode code);
     }
 }

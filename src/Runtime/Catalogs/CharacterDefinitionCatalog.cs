@@ -37,5 +37,10 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Catalogs
 
             return character;
         }
+
+        public bool Exists(CharacterCode code)
+        {
+            return _byCode.ContainsKey(code);
+        }
     }
 }

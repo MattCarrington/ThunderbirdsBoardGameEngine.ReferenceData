@@ -15,6 +15,11 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes
             _characters = characters.ToFrozenDictionary(character => character.Code);
         }
 
+        public bool Exists(CharacterCode code)
+        {
+            return _characters.ContainsKey(code);
+        }
+
         public ImmutableArray<ReferenceCharacterDefinition> GetAll()
         {
             return _characters.Values.ToImmutableArray();
