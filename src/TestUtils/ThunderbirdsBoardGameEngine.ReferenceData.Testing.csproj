@@ -2,7 +2,7 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>ThunderbirdsBoardGameEngine.ReferenceData.Testing</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>Matthew Carrington</Authors>
     <Description>Test-only definition factories, fixtures, builders, and in-memory catalogues for Reference Data consumers.</Description>
     <RepositoryUrl>https://github.com/MattCarrington/ThunderbirdsBoardGameEngine.ReferenceData</RepositoryUrl>
