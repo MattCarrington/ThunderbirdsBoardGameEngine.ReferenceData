@@ -36,6 +36,12 @@ jobs:
         working-directory: tools/Compiler
         run: dotnet run --configuration Release --no-build
 
+      - name: Validate compiled snapshot with Runtime
+        if: runner.os == 'Linux'
+        run: |
+          cp tools/Compiler/snapshot.json src/Runtime/snapshot.json
+          dotnet test tests/ComponentTests/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.ComponentTests.csproj --configuration Release --no-restore --filter 'FullyQualifiedName~.ComponentTests.Loader.'
+
       - name: Upload compiled snapshot
         if: runner.os == 'Linux'
         uses: actions/upload-artifact@v7
