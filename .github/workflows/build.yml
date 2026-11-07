@@ -35,3 +35,11 @@ jobs:
       - name: Compile Reference Data snapshot
         working-directory: tools/Compiler
         run: dotnet run --configuration Release --no-build
+
+      - name: Upload compiled snapshot
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v7
+        with:
+          name: reference-data-snapshot
+          path: tools/Compiler/snapshot.json
+          if-no-files-found: error
