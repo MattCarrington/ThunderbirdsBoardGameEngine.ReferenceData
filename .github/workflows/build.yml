@@ -31,3 +31,7 @@ jobs:
         run: |
           dotnet restore "${{ inputs.solution_file }}"
           dotnet build "${{ inputs.solution_file }}" --configuration Release --no-restore
+
+      - name: Compile Reference Data snapshot
+        working-directory: tools/Compiler
+        run: dotnet run --configuration Release --no-build
