@@ -30,6 +30,17 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces
         /// </summary>
         /// <param name="code">The character code to locate.</param>
         /// <returns><see langword="true"/> if the character code exists; otherwise, <see langword="false"/>.</returns>
-        bool Exists(CharacterCode code);
+        bool Exists(CharacterCode code)
+        {
+            foreach (var character in GetAll())
+            {
+                if (character.Code == code)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }
