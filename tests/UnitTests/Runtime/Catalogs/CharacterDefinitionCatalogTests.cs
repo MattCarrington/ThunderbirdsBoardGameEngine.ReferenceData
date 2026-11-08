@@ -56,6 +56,32 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Catalogs
             Assert.Throws<ArgumentNullException>(() => new CharacterDefinitionCatalog(null!));
         }
 
+        [Fact]
+        public void Exists_WithValidCode_ReturnsTrue()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var exists = catalog.Exists(new CharacterCode("character-1"));
+
+            // Assert
+            Assert.True(exists);
+        }
+
+        [Fact]
+        public void Exists_WithInvalidCode_ReturnsFalse()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var exists = catalog.Exists(new CharacterCode("invalid-code"));
+
+            // Assert
+            Assert.False(exists);
+        }
+
         private static CharacterDefinitionCatalog CreateCatalog()
         {
             var snapshot = new ReferenceDataSnapshotBuilder()
