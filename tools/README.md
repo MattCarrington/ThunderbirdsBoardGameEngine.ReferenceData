@@ -37,12 +37,12 @@ The current entry point reads `ReferenceData.xlsx` and writes `snapshot.json`, b
 
 ### CI compilation and validation
 
-CI runs the compiler on Ubuntu and Windows. On Ubuntu it embeds the generated
+After the Ubuntu and Windows test jobs and the CI script tests pass, a dedicated Ubuntu job runs the compiler. It embeds the generated
 JSON in Runtime in the CI checkout and runs the catalog-loading component tests.
 After those tests pass, the run uploads the original `snapshot.json` as the
 `reference-data-snapshot` artifact. Download it from the run's **Artifacts**
 section. For failures, check **Compile Reference Data snapshot** or **Validate
-compiled snapshot with Runtime** in the build job logs. Use the local compiler
+compiled snapshot with Runtime** in the snapshot job logs. Use the local compiler
 command above to reproduce a compilation failure.
 
 ### Updating the embedded snapshot

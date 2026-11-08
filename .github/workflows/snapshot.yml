@@ -1,0 +1,32 @@
+name: Snapshot
+
+on:
+  workflow_call:    
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+
+      - name: Compile Reference Data snapshot
+        working-directory: tools/Compiler
+        run: dotnet run --configuration Release
+
+      - name: Validate compiled snapshot with Runtime
+        run: |
+          cp tools/Compiler/snapshot.json src/Runtime/snapshot.json
+          dotnet test tests/ComponentTests/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.ComponentTests.csproj --configuration Release --filter 'FullyQualifiedName~.ComponentTests.Loader.'
+
+      - name: Upload compiled snapshot
+        uses: actions/upload-artifact@v7
+        with:
+          name: reference-data-snapshot
+          path: tools/Compiler/snapshot.json
+          if-no-files-found: error
