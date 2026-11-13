@@ -42,6 +42,14 @@ jobs:
     needs:
       - build
 
+  snapshot:
+    name: Compile and validate snapshot
+    uses: ./.github/workflows/snapshot.yml
+    
+    needs:
+      - tests
+      - ci-script-tests    
+
   packages:
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
     uses: ./.github/workflows/package-release.yml
@@ -50,5 +58,4 @@ jobs:
       default_branch: ${{ github.event.repository.default_branch }}
     secrets: inherit
     needs:
-      - tests
-      - ci-script-tests
+      - snapshot

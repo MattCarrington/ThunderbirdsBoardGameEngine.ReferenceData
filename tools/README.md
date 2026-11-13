@@ -35,16 +35,35 @@ try {
 
 The current entry point reads `ReferenceData.xlsx` and writes `snapshot.json`, both relative to the process working directory. It has no command-line path configuration. Building the application does not run this compiler.
 
+### CI compilation and validation
+
+After the Ubuntu and Windows test jobs and the CI script tests pass, a dedicated Ubuntu job runs the compiler. It embeds the generated
+JSON in Runtime in the CI checkout and runs the catalog-loading component tests.
+After those tests pass, the run uploads the original `snapshot.json` as the
+`reference-data-snapshot` artifact. Download it from the run's **Artifacts**
+section. For failures, check **Compile Reference Data snapshot** or **Validate
+compiled snapshot with Runtime** in the snapshot job logs. Use the local compiler
+command above to reproduce a compilation failure.
+
 ### Updating the embedded snapshot
 
-1. Update the authoritative spreadsheet in the compiler project.
-2. Assess the schema and content changes using the [shared versioning rules](../src/Readme.md#snapshot-metadata). Update the generation constants in `SnapshotVersions.cs` as appropriate; generator and content versions are currently maintained manually.
-3. Run the compiler as above. If compilation fails, correct the source or compiler before proceeding; an existing output file is not evidence of a successful run.
-4. Review the generated snapshot and its metadata. Copy the successfully generated `snapshot.json` to `src/Runtime/snapshot.json`, replacing the embedded source. Retain a prior snapshot under `src/Archive` when needed for compatibility coverage; archive policy is not yet automated.
-5. Run the relevant Reference Data unit and component tests, including Runtime loading checks, and any application tests affected by changed definitions or identities.
-6. Review package compatibility and declared package versions using [package-release guidance](https://github.com/MattCarrington/ThunderbirdsBoardGameEngine/blob/99318f91dd6885e88b693a5be179b40b828133ac/docs/PackageReleases.md). Commit the source, generated artifacts, metadata, and related code/test changes together.
+1. Update the workbook and assess the schema and content changes using the
+   [snapshot versioning rules](../src/Readme.md#snapshot-metadata). Set the new
+   content version and any other affected metadata in `SnapshotVersions.cs`.
+2. Push the changes and download `reference-data-snapshot` from the successful
+   CI run for that commit. Review its definitions and metadata.
+3. Copy the downloaded `snapshot.json` to `src/Runtime/snapshot.json` and commit
+   that exact file. Retain the previous snapshot in `src/Archive` if needed for
+   compatibility coverage.
+4. Update the declared Runtime package version according to the
+   [package release guide](../docs/package-releases.md). Let CI validate the
+   final changes before merging.
 
-The compiler does not copy its output into Runtime, archive previous snapshots, choose package versions, or publish artifacts. Those are currently separate steps. Their automation is part of the proposed [evolution plan](../docs/architecture/reference-data-evolution.md).
+Runtime packages embed the checked-in snapshot. Keep that file unchanged for
+package-only releases so the same content version keeps the same bytes,
+including its original generation timestamp. The CI artifact is a candidate
+for review. Committing it makes it available to future Runtime builds after
+that workflow artifact expires.
 
 ---
 
