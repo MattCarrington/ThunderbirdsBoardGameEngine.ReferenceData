@@ -84,7 +84,7 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Catalogs
 
         [Fact]
         public void TryGetByCode_WithValidCode_ReturnsTrueAndDisaster()
-        {             
+        {
             // Arrange
             var catalog = CreateCatalog();
 
