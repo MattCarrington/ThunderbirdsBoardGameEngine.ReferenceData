@@ -35,5 +35,12 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces
         /// <param name="code">The Thunderbird code.</param>
         /// <returns>The Thunderbird definition.</returns>
         ReferenceThunderbirdDefinition GetByCode(ThunderbirdCode code);
+
+        /// <summary>
+        /// Determines whether a definition exists for the specified Thunderbird code.
+        /// </summary>
+        /// <param name="code">The Thunderbird code to check.</param>
+        /// <returns>true if a definition exists for the specified code; otherwise, false.</returns>
+        bool Exists(ThunderbirdCode code);
     }
 }

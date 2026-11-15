@@ -42,5 +42,10 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Catalogs
 
             return definition;
         }
+
+        public bool Exists(ThunderbirdCode code)
+        {
+            return _byCode.ContainsKey(code);
+        }
     }
 }

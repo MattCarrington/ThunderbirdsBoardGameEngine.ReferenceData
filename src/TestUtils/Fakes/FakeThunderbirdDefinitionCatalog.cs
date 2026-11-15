@@ -16,6 +16,11 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes
             _thunderbirds = thunderbirds.ToFrozenDictionary(thunderbird => thunderbird.Code);
         }
 
+        public bool Exists(ThunderbirdCode code)
+        {
+            return _thunderbirds.ContainsKey(code);
+        }
+
         public ImmutableArray<ReferenceThunderbirdDefinition> GetAll()
         {
             return _thunderbirds.Values.ToImmutableArray();
@@ -31,5 +36,4 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes
             return _thunderbirds.TryGetValue(code, out definition);
         }
     }
-
 }
