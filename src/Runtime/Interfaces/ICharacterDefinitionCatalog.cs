@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 
@@ -42,5 +43,13 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces
 
             return false;
         }
+
+        /// <summary>
+        /// Gets the character definition associated with the specified code.
+        /// </summary>
+        /// <param name="code">The character code to look up.</param>
+        /// <param name="characterDefinition">When this method returns true, the character definition associated with code; otherwise, null.</param>
+        /// <returns>true if a character definition with the specified code is found; otherwise, false.</returns>
+        bool TryGetByCode(CharacterCode code, [NotNullWhen(true)] out ReferenceCharacterDefinition? characterDefinition);
     }
 }

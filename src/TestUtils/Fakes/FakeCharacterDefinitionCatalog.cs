@@ -1,5 +1,6 @@
 using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
@@ -28,6 +29,11 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Testing.Fakes
         public ReferenceCharacterDefinition GetByCode(CharacterCode code)
         {
             return _characters[code];
+        }
+
+        public bool TryGetByCode(CharacterCode code, [NotNullWhen(true)] out ReferenceCharacterDefinition? characterDefinition)
+        {
+            return _characters.TryGetValue(code, out characterDefinition);
         }
     }
 }
