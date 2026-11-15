@@ -82,6 +82,32 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Catalogs
             Assert.False(exists);
         }
 
+        [Fact]
+        public void TryGetByCode_WithValidCode_ReturnsTrueAndCharacter()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+            // Act
+            var result = catalog.TryGetByCode(new CharacterCode("character-1"), out var characterDefinition);
+            // Assert
+            Assert.True(result);
+            Assert.NotNull(characterDefinition);
+            Assert.Equal(new CharacterCode("character-1"), characterDefinition!.Code);
+            Assert.Equal("Character 1", characterDefinition.DisplayName);
+        }
+
+        [Fact]
+        public void TryGetByCode_WithInvalidCode_ReturnsFalseAndNull()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+            // Act
+            var result = catalog.TryGetByCode(new CharacterCode("invalid-code"), out var characterDefinition);
+            // Assert
+            Assert.False(result);
+            Assert.Null(characterDefinition);
+        }
+
         private static CharacterDefinitionCatalog CreateCatalog()
         {
             var snapshot = new ReferenceDataSnapshotBuilder()

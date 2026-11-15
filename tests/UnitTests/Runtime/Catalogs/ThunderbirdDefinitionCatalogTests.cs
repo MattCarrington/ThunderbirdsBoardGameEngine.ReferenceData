@@ -106,6 +106,32 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Catalogs
             Assert.Throws<KeyNotFoundException>(() => catalog.GetByCode(code));
         }
 
+        [Fact]
+        public void Exists_WithExistingCode_ReturnsTrue()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var result = catalog.Exists(new ThunderbirdCode("thunderbird-1"));
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Exists_WithNonExistingCode_ReturnsFalse()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var result = catalog.Exists(new ThunderbirdCode("non-existing-code"));
+
+            // Assert
+            Assert.False(result);
+        }
+
         private static ThunderbirdDefinitionCatalog CreateCatalog()
         {
             var snapshot = new ReferenceDataSnapshotBuilder()

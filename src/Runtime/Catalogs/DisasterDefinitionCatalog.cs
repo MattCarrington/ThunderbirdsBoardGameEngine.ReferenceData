@@ -1,5 +1,6 @@
 ﻿using System.Collections.Frozen;
 using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 using ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces;
@@ -23,6 +24,11 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Catalogs
             _disasters = snapshot.DisasterDefinitions.ToImmutableArray();
         }
 
+        public bool Exists(CardCode code)
+        {
+            return _byCode.ContainsKey(code);
+        }
+
         public ImmutableArray<ReferenceDisasterDefinition> GetAll()
         {
             return _disasters;
@@ -36,6 +42,11 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Catalogs
             }
 
             return disaster;
+        }
+
+        public bool TryGetByCode(CardCode code, [NotNullWhen(true)] out ReferenceDisasterDefinition? disasterDefinition)
+        {
+            return _byCode.TryGetValue(code, out disasterDefinition);
         }
     }
 }

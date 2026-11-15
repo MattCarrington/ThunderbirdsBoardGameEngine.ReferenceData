@@ -56,6 +56,62 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.UnitTests.Catalogs
             Assert.Throws<ArgumentNullException>(() => new DisasterDefinitionCatalog(null!));
         }
 
+        [Fact]
+        public void Exists_WithValidCode_ReturnsTrue()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var result = catalog.Exists(new CardCode("disaster-1"));
+
+            // Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Exists_WithInvalidCode_ReturnsFalse()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var result = catalog.Exists(new CardCode("invalid-code"));
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void TryGetByCode_WithValidCode_ReturnsTrueAndDisaster()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var result = catalog.TryGetByCode(new CardCode("disaster-1"), out var disaster);
+
+            // Assert
+            Assert.True(result);
+            Assert.NotNull(disaster);
+            Assert.Equal(new CardCode("disaster-1"), disaster!.Code);
+            Assert.Equal("Disaster 1", disaster.DisplayName);
+        }
+
+        [Fact]
+        public void TryGetByCode_WithInvalidCode_ReturnsFalseAndNull()
+        {
+            // Arrange
+            var catalog = CreateCatalog();
+
+            // Act
+            var result = catalog.TryGetByCode(new CardCode("invalid-code"), out var disaster);
+
+            // Assert
+            Assert.False(result);
+            Assert.Null(disaster);
+        }
+
         private static DisasterDefinitionCatalog CreateCatalog()
         {
             var snapshot = new ReferenceDataSnapshotBuilder()

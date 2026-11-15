@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 using ThunderbirdsBoardGameEngine.ReferenceData.Core.Model;
 
@@ -30,17 +31,14 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Runtime.Interfaces
         /// </summary>
         /// <param name="code">The character code to locate.</param>
         /// <returns><see langword="true"/> if the character code exists; otherwise, <see langword="false"/>.</returns>
-        bool Exists(CharacterCode code)
-        {
-            foreach (var character in GetAll())
-            {
-                if (character.Code == code)
-                {
-                    return true;
-                }
-            }
+        bool Exists(CharacterCode code);
 
-            return false;
-        }
+        /// <summary>
+        /// Gets the character definition associated with the specified code.
+        /// </summary>
+        /// <param name="code">The character code to look up.</param>
+        /// <param name="characterDefinition">When this method returns true, the character definition associated with code; otherwise, null.</param>
+        /// <returns>true if a character definition with the specified code is found; otherwise, false.</returns>
+        bool TryGetByCode(CharacterCode code, [NotNullWhen(true)] out ReferenceCharacterDefinition? characterDefinition);
     }
 }
