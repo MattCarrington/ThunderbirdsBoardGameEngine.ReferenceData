@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 4,
-  "contentVersion": "1.3.0",
-  "generatedAt": "2026-10-17T17:57:53.0769647+00:00",
-  "generatorVersion": "1.3.0",
+  "schemaVersion": 5,
+  "contentVersion": "2.0.0",
+  "generatedAt": "2026-11-27T15:30:07.9167005+00:00",
+  "generatorVersion": "1.4.0",
   "characterDefinitions": [
     {
       "code": "scott",
@@ -1245,125 +1245,162 @@
   "fabCardDefinitions": [
     {
       "code": "underwater-sealing-unit",
-      "displayName": "Underwater Sealing Unit"
+      "displayName": "Underwater Sealing Unit",
+      "effectDescription": "Add \u002B3 to any Sea Rescue.",
+      "instructionalText": "Play before someone rolls for a rescue."
     },
     {
       "code": "holiday-in-bonga-bonga",
-      "displayName": "Holiday in Bonga Bonga"
+      "displayName": "Holiday in Bonga Bonga",
+      "effectDescription": "Do not draw a disaster card at the end of this turn. Roll 1 die. Advance The Hood one space on the The Hood track if you roll The Hood icon."
     },
     {
       "code": "mobile-command-unit",
-      "displayName": "Mobile Command Unit"
+      "displayName": "Mobile Command Unit",
+      "effectDescription": "Any single player may take 1 bonus token of their choice from the supply."
     },
     {
       "code": "astronaut-spacewalk",
-      "displayName": "Astronaut Spacewalk"
+      "displayName": "Astronaut Spacewalk",
+      "effectDescription": "Add \u002B3 to any Space Rescue.",
+      "instructionalText": "Play before someone rolls for a rescue."
     },
     {
       "code": "grandma-s-cooking",
-      "displayName": "Grandma\u0027s Cooking"
+      "displayName": "Grandma\u0027s Cooking",
+      "effectDescription": "Move any one Thunderbird machine (and all the characters in it) to Tracy Island."
     },
     {
       "code": "experimental-fuel",
-      "displayName": "Experimental Fuel"
+      "displayName": "Experimental Fuel",
+      "effectDescription": "Move Thunderbird 3 to any region in outer space.",
+      "instructionalText": "A character controlled by a player in the game must be aboard Thunderbird 3 to play this card."
     },
     {
       "code": "air-sea-rescue-centre",
-      "displayName": "Air Sea Rescue Centre"
+      "displayName": "Air Sea Rescue Centre",
+      "effectDescription": "Discard 1 face-up disaster card on the disaster track to the discard pile."
     },
     {
       "code": "help-from-braman",
-      "displayName": "Help from Braman"
+      "displayName": "Help from Braman",
+      "effectDescription": "The current player may take 2 additional actions this turn."
     },
     {
       "code": "powder-compact-radio",
-      "displayName": "Powder Compact Radio"
+      "displayName": "Powder Compact Radio",
+      "effectDescription": "Move Thunderbird 1 and/or Thunderbird 2 and/or Thunderbird 4 to Lady Penelope\u0027s space is she is on Earth."
     },
     {
       "code": "automatic-camera-detector",
-      "displayName": "Automatic Camera Detector"
+      "displayName": "Automatic Camera Detector",
+      "effectDescription": "Move The Hood back one space on The Hood track or the current player can draw a Determination token."
     },
     {
       "code": "tracy-brothers-portraits",
-      "displayName": "Tracy Brothers\u0027 Portraits"
+      "displayName": "Tracy Brothers\u0027 Portraits",
+      "effectDescription": "Any single player may swap up to 3 of their bonus tokens for the same number of different bonus tokens from the supply."
     },
     {
       "code": "agent-47-jeremiah-tuttle",
-      "displayName": "Agent-47 Jeremiah Tuttle"
+      "displayName": "Agent-47 Jeremiah Tuttle",
+      "effectDescription": "Reveal any one scheme card on The Hood track or the current player may collect an Intelligence token."
     },
     {
       "code": "fab-1-hydrofoils",
-      "displayName": "FAB 1 Hydrofoils"
+      "displayName": "FAB 1 Hydrofoils",
+      "effectDescription": "Move FAB 1 to any space on Earth."
     },
     {
       "code": "remote-control-hover-camera",
-      "displayName": "Remote Control Hover Camera"
+      "displayName": "Remote Control Hover Camera",
+      "effectDescription": "Add \u002B3 to any Air Rescue.",
+      "instructionalText": "Play before someone rolls for a rescue."
     },
     {
       "code": "personal-hoverjet",
-      "displayName": "Personal Hoverjet"
+      "displayName": "Personal Hoverjet",
+      "effectDescription": "Add \u002B3 to any Land Rescue.",
+      "instructionalText": "Play before someone rolls for a rescue."
     },
     {
       "code": "sir-jeremy-hodge",
-      "displayName": "Sir Jeremy Hodge"
+      "displayName": "Sir Jeremy Hodge",
+      "effectDescription": "Move up to 2 pod vehicles from Brains\u0027 Notebook on to Tracy Island."
     },
     {
       "code": "long-range-walkie-talkies",
-      "displayName": "Long-Range Walkie Talkies"
+      "displayName": "Long-Range Walkie Talkies",
+      "effectDescription": "A single player may give 2 of their bonus tokens to one other player."
     },
     {
       "code": "jeff-s-orders",
-      "displayName": "Jeff\u0027s Orders"
+      "displayName": "Jeff\u0027s Orders",
+      "effectDescription": "Move Thunderbird 1 or Thunderbird 2 or Thunderbird 4 to any space on Earth."
     }
   ],
   "eventCardDefinitions": [
     {
       "code": "the-hood-interferes",
-      "displayName": "The Hood Interferes"
+      "displayName": "The Hood Interferes",
+      "effectDescription": "Put this under the left-most disaster card on the disaster track that requires a dice roll to avert. Subtract 2 from all dice roll totals for this disaster.",
+      "instructionalText": "If there are no eligible cards on the track, discard this card without effect."
     },
     {
       "code": "explosion-on-tracy-island",
-      "displayName": "Explosion on Tracy Island"
+      "displayName": "Explosion on Tracy Island",
+      "effectDescription": "Put 1 pod vehicle from Tracy Island (if there is one available) back on to Brains\u0027 Notebook."
     },
     {
       "code": "pod-hydraulics-sabotaged",
-      "displayName": "Pod Hydraulics Sabotaged"
+      "displayName": "Pod Hydraulics Sabotaged",
+      "effectDescription": "Thunderbird may not load or unload FAB 1 or Thunderbird 4 until a character in its space discards a Technology token."
     },
     {
       "code": "attack-of-the-zombites",
-      "displayName": "Attack of the Zombites"
+      "displayName": "Attack of the Zombites",
+      "effectDescription": "Thunderbird 1 has a top speed of 1 until a character in its space discards a Technology token."
     },
     {
       "code": "accidental-injury",
-      "displayName": "Accidental Injury"
+      "displayName": "Accidental Injury",
+      "effectDescription": "The current player\u0027s character is injured and may not take the Rescue action until they return to Tracy Island.",
+      "instructionalText": "Put this card under the current player\u0027s character card as a reminder. Discard it to the box when the character moves to Tracy Island."
     },
     {
       "code": "rocket-malfunction",
-      "displayName": "Rocket Malfunction"
+      "displayName": "Rocket Malfunction",
+      "effectDescription": "Thunderbird 3 has a top speed of 1 until a character in its space discards a Technology token."
     },
     {
       "code": "kyrano-kyrano",
-      "displayName": "Kyrano\u2026 Kyrano!!"
+      "displayName": "Kyrano\u2026 Kyrano!!",
+      "effectDescription": "Advance any 2 disaster cards one slot each on the disaster track."
     },
     {
       "code": "emergency-comms-interrupted",
-      "displayName": "Emergency Comms Interrupted"
+      "displayName": "Emergency Comms Interrupted",
+      "effectDescription": "Immediately draw 1 disaster card and resolve as usual."
     },
     {
       "code": "the-hood-s-hypnotic-eyes",
-      "displayName": "The Hood\u0027s Hypnotic Eyes"
+      "displayName": "The Hood\u0027s Hypnotic Eyes",
+      "effectDescription": "Players cannot use the special abilities on their character cards until a player in Asia discards a Determination token."
     },
     {
       "code": "usn-sentinel-missile-strike",
-      "displayName": "USN Sentinel Missile Strike"
+      "displayName": "USN Sentinel Missile Strike",
+      "effectDescription": "Thunderbird 2 has a top speed of 1 until a character in its space discards a Technology token."
     },
     {
       "code": "master-of-disguise",
-      "displayName": "Master of Disguise"
+      "displayName": "Master of Disguise",
+      "effectDescription": "Players must collectively discard 2 bonus tokens (if they have them)."
     },
     {
       "code": "icelandic-volcano-eruption",
-      "displayName": "Icelandic Volcano Eruption"
+      "displayName": "Icelandic Volcano Eruption",
+      "effectDescription": "Move actions cannot be made across the edges of the game board until a player in the North Atlantic discards a Logistics token."
     }
   ]
 }
