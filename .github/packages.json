@@ -17,7 +17,8 @@
     "project_path": "src/Runtime/ThunderbirdsBoardGameEngine.ReferenceData.Runtime.csproj",
     "source_paths": [
       "src/Runtime",
-      "src/Readme.md"
+      "src/Readme.md",
+      "tools/Compiler"
     ],
     "central_packages": [
       "Microsoft.Extensions.DependencyInjection.Abstractions",

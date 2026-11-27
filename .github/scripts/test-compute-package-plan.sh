@@ -75,4 +75,9 @@ run_test \
   "Directory.Build.props" \
   '["ThunderbirdsBoardGameEngine.ReferenceData.Core","ThunderbirdsBoardGameEngine.ReferenceData.Runtime","ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
 
+run_test \
+  "Compiler workbook changes select Runtime and Testing" \
+  "tools/Compiler/ReferenceData.xlsx" \
+  '["ThunderbirdsBoardGameEngine.ReferenceData.Runtime","ThunderbirdsBoardGameEngine.ReferenceData.Testing"]'
+
 echo "All $PASSED compute-package-plan tests passed."

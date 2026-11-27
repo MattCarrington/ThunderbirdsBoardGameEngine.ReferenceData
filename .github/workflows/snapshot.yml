@@ -19,6 +19,11 @@ jobs:
         working-directory: tools/Compiler
         run: dotnet run --configuration Release
 
+      - name: Reuse retained content version when available
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/select-release-snapshot.py tools/Compiler/snapshot.json
+
       - name: Validate compiled snapshot with Runtime
         run: |
           cp tools/Compiler/snapshot.json src/Runtime/snapshot.json

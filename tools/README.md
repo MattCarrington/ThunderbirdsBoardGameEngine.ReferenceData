@@ -45,25 +45,37 @@ section. For failures, check **Compile Reference Data snapshot** or **Validate
 compiled snapshot with Runtime** in the snapshot job logs. Use the local compiler
 command above to reproduce a compilation failure.
 
-### Updating the embedded snapshot
+### Releasing the generated snapshot
 
-1. Update the workbook and assess the schema and content changes using the
-   [snapshot versioning rules](../src/Readme.md#snapshot-metadata). Set the new
-   content version and any other affected metadata in `SnapshotVersions.cs`.
-2. Push the changes and download `reference-data-snapshot` from the successful
-   CI run for that commit. Review its definitions and metadata.
-3. Copy the downloaded `snapshot.json` to `src/Runtime/snapshot.json` and commit
-   that exact file. Retain the previous snapshot in `src/Archive` if needed for
-   compatibility coverage.
-4. Update the declared Runtime package version according to the
-   [package release guide](../docs/package-releases.md). Let CI validate the
-   final changes before merging.
+1. Update the workbook and assess schema/content changes using the
+   [snapshot versioning rules](../src/Readme.md#snapshot-metadata). Set the
+   appropriate constants in `SnapshotVersions.cs`.
+2. Update the affected package versions using the
+   [package release guide](../docs/package-releases.md). Compiler input changes
+   select Runtime and Testing for publication.
+3. Push and review the validated `reference-data-snapshot` artifact. The package
+   job downloads that exact artifact into Runtime before packing. Published
+   Runtime and Testing packages are restored in isolated consumers and their
+   embedded snapshot hashes must match the artifact.
+4. On main, after snapshot validation and before publishing Runtime, CI retains the exact snapshot as the
+   `snapshot.json` asset of the `snapshot/v<content-version>` GitHub Release.
+   This release is the interim durable store before Blob delivery.
 
-Runtime packages embed the checked-in snapshot. Keep that file unchanged for
-package-only releases so the same content version keeps the same bytes,
-including its original generation timestamp. The CI artifact is a candidate
-for review. Committing it makes it available to future Runtime builds after
-that workflow artifact expires.
+Later builds compare freshly compiled data with the retained content version,
+ignoring only the generation timestamp. If the content matches, they use the
+retained bytes. If it differs, CI fails and requires a new content version.
+Existing assets are never overwritten. Access to private release assets uses
+the workflow token.
+
+The test matrix generates a temporary embedded snapshot before running tests.
+For equivalent local validation, run the compiler, copy its output to
+`src/Runtime/snapshot.json`, and run the tests. CI performs this preparation in
+its checkout. Packaging always obtains its snapshot from the validated artifact.
+
+Retention must succeed before stable package publication starts. If publication
+fails, the next run can reuse the retained snapshot. For package verification
+or tag recovery, follow the package release guide.
+
 
 ---
 

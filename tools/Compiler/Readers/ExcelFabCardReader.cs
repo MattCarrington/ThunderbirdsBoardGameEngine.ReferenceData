@@ -22,7 +22,18 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Readers
                     continue;
                 }
 
-                fabCards.Add(new FabCardInput(name));
+                var effectDescription = row.Cell(columnMap["Effect Description"]).GetString();
+
+                var instructionalText = columnMap.HasColumn("Instructional Text")
+                    ? row.Cell(columnMap["Instructional Text"]).GetString()
+                    : string.Empty;
+
+                fabCards.Add(new FabCardInput(
+                    name,
+                    effectDescription,
+                    string.IsNullOrWhiteSpace(instructionalText)
+                        ? null
+                        : instructionalText));
             }
 
             return fabCards;

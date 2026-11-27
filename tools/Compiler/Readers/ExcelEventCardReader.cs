@@ -1,6 +1,7 @@
 using ClosedXML.Excel;
 using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Helpers;
 using ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Inputs;
+using ThunderbirdsBoardGameEngine.ReferenceData.Core.Identities;
 
 namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Readers
 {
@@ -22,7 +23,18 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Readers
                     continue;
                 }
 
-                eventCards.Add(new EventCardInput(name));
+                var effectDescription = row.Cell(columnMap["Effect Description"]).GetString();
+
+                var instructionalText = columnMap.HasColumn("Instructional Text")
+                    ? row.Cell(columnMap["Instructional Text"]).GetString()
+                    : string.Empty;
+
+                eventCards.Add(new EventCardInput(
+                    name,
+                    effectDescription,
+                    string.IsNullOrWhiteSpace(instructionalText)
+                        ? null
+                        : instructionalText));
             }
 
             return eventCards;
