@@ -22,5 +22,13 @@ exist without tags. The existing version script skips published stable versions 
 rerun, so check the original release commit and complete verification/tag recovery
 explicitly; do not bump versions or tag a different commit merely to retry.
 
-The snapshot remains manually compiled and embedded in Runtime. This pipeline does
-not compile or publish independent snapshots.
+After the cross-platform test matrix passes, the snapshot workflow compiles,
+selects and validates one snapshot. The package job downloads that artifact and
+embeds it before packing Runtime. Isolated consumers verify its SHA-256 against
+the embedded resource in the published Runtime assembly.
+
+Stable content is retained as the snapshot.json asset of a
+`snapshot/v<content-version>` GitHub Release before Runtime publication.
+Subsequent runs reuse those exact bytes and reject content changes that reuse
+the version. This store is the interim delivery mechanism before Blob storage.
+The [compiler guide](../tools/README.md) describes authoring and local validation.
