@@ -17,7 +17,8 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Compiler.Mappers
             return new ReferenceEventCardDefinition(
                 code: new CardCode(StringHelpers.Slugify(input.Name)),
                 displayName: StringHelpers.NormalizeWhitespace(input.Name, nameof(input.Name)),
-                effectDescription: string.Empty);   //  TODO: Map
+                effectDescription: input.EffectDescription,
+                instructionalText: input.InstructionalText);
         }
     }
 }
