@@ -53,14 +53,30 @@ public static class ReferenceDefinitionFactory
         return new(edge1, edge2, edgeType);
     }
 
-    public static ReferenceFabCardDefinition FabCard(CardCode code, string displayName)
+    public static ReferenceFabCardDefinition FabCard(
+        CardCode code,
+        string displayName,
+        string effectDescription = "some description",
+        string? instructionalText = null)
     {
-        return new(code, displayName);
+        return new(
+            code,
+            displayName,
+            effectDescription,
+            instructionalText);
     }
 
-    public static ReferenceEventCardDefinition EventCard(CardCode code, string displayName)
+    public static ReferenceEventCardDefinition EventCard(
+        CardCode code,
+        string displayName,
+        string effectDescription = "some description",
+        string? instructionalText = null)
     {
-        return new(code, displayName);
+        return new(
+            code,
+            displayName,
+            effectDescription,
+            instructionalText);
     }
 
     public static ReferenceDisasterDefinition Disaster(

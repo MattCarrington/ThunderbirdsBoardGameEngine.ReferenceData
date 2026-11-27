@@ -202,11 +202,15 @@ public sealed class ReferenceDataSnapshotBuilder
 
     public ReferenceDataSnapshotBuilder WithFabCard(
         string code,
-        string displayName)
+        string displayName,
+        string effectDescription = "some description",
+        string? instructionalText = null)
     {
         _fabCards.Add(new ReferenceFabCardDefinition(
             new CardCode(code),
-            displayName));
+            displayName,
+            effectDescription,
+            instructionalText));
 
         return this;
     }
@@ -219,11 +223,15 @@ public sealed class ReferenceDataSnapshotBuilder
 
     public ReferenceDataSnapshotBuilder WithEventCard(
         string code,
-        string displayName)
+        string displayName,
+        string effectDescription = "some description",
+        string? instructionalText = null)
     {
         _eventCards.Add(new ReferenceEventCardDefinition(
             new CardCode(code),
-            displayName));
+            displayName,
+            effectDescription,
+            instructionalText));
 
         return this;
     }
