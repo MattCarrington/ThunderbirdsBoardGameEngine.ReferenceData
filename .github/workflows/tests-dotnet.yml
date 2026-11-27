@@ -31,6 +31,12 @@ jobs:
         with:
           global-json-file: global.json
 
+      - name: Prepare generated snapshot for tests
+        run: |
+          dotnet run --configuration Release
+          cp snapshot.json ../../src/Runtime/snapshot.json
+        working-directory: tools/Compiler
+
       - name: Run Unit Tests
         run: |
           set -e

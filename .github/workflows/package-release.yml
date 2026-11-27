@@ -89,6 +89,29 @@ jobs:
           DEFAULT_BRANCH: ${{ inputs.default_branch }}
         run: bash ./.github/scripts/prepare-package-plan.sh
 
+      - name: Download validated snapshot
+        if: steps.package-plan.outputs.has_packages == 'true'
+        uses: actions/download-artifact@v8
+        with:
+          name: reference-data-snapshot
+          path: artifacts/snapshot
+
+      - name: Embed validated snapshot
+        if: steps.package-plan.outputs.has_packages == 'true'
+        run: |
+          cp artifacts/snapshot/snapshot.json src/Runtime/snapshot.json
+          echo "EXPECTED_SNAPSHOT_SHA256=$(sha256sum artifacts/snapshot/snapshot.json | cut -d ' ' -f 1)" >> "$GITHUB_ENV"
+
+      - name: Retain validated stable snapshot
+        if: steps.package-plan.outputs.has_packages == 'true' && github.ref == format('refs/heads/{0}', inputs.default_branch)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PACKAGE_PLAN: ${{ steps.prepared-plan.outputs.plan }}
+        run: |
+          if jq -e '.[] | select(.package_id == "ThunderbirdsBoardGameEngine.ReferenceData.Runtime" and .should_publish == true)' <<< "$PACKAGE_PLAN" >/dev/null; then
+            python3 .github/scripts/select-release-snapshot.py artifacts/snapshot/snapshot.json --retain
+          fi
+
       - name: Pack and publish selected packages
         if: steps.package-plan.outputs.has_packages == 'true'
         shell: bash

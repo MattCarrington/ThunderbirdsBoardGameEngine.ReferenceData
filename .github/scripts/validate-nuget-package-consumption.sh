@@ -108,6 +108,30 @@ dotnet build "$PROJECT_FILE" \
   --configuration Release \
   --no-restore
 
+# Runtime and Testing must expose the exact snapshot passed between CI jobs.
+if [ -n "${EXPECTED_SNAPSHOT_SHA256:-}" ] && {
+  [ "$PACKAGE_ID" = "ThunderbirdsBoardGameEngine.ReferenceData.Runtime" ] ||
+  [ "$PACKAGE_ID" = "ThunderbirdsBoardGameEngine.ReferenceData.Testing" ];
+}; then
+  cat > Program.cs <<'CS'
+using System.Security.Cryptography;
+using ThunderbirdsBoardGameEngine.ReferenceData.Runtime;
+
+var assembly = typeof(ServiceCollectionExtensions).Assembly;
+var resource = assembly.GetManifestResourceNames().Single(name => name.EndsWith(".snapshot.json", StringComparison.Ordinal));
+using var stream = assembly.GetManifestResourceStream(resource)
+    ?? throw new InvalidOperationException("Embedded snapshot is missing.");
+var actualHash = Convert.ToHexString(SHA256.HashData(stream));
+var expectedHash = Environment.GetEnvironmentVariable("EXPECTED_SNAPSHOT_SHA256");
+if (!string.Equals(actualHash, expectedHash, StringComparison.OrdinalIgnoreCase))
+{
+    throw new InvalidOperationException("Published package embeds a different snapshot from the validated artifact.");
+}
+Console.WriteLine("Embedded snapshot matches the validated artifact.");
+CS
+  dotnet run --project "$PROJECT_FILE" --configuration Release --no-restore
+fi
+
 popd > /dev/null
 
 echo "Package consumption validation passed."
