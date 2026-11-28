@@ -29,6 +29,6 @@ namespace ThunderbirdsBoardGameEngine.ReferenceData.Core
         /// Currently hardcoded for simplicity. Future versions may use semantic versioning 
         /// or timestamp-based versioning.
         /// </remarks>
-        public const string ContentVersion = "2.0.0";
+        public const string ContentVersion = "2.0.1";
     }
 }
